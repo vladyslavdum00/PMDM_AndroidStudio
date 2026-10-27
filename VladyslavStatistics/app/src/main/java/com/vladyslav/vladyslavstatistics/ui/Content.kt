@@ -313,13 +313,10 @@ fun Content(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally) {
             Button(
                 onClick = {
-                    var option = (1..4).random()
-                    when (option){
-                        1 -> countPerson += (0..10).random()
-                        2 -> countElectricScooter += (0..10).random()
-                        3 -> countBicicle += (0..10).random()
-                        4 -> countCar += (0..10).random()
-                    }
+                        countPerson += (0..10).random()
+                        countElectricScooter += (0..10).random()
+                        countBicicle += (0..10).random()
+                        countCar += (0..10).random()
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0070FF))
             ) {
