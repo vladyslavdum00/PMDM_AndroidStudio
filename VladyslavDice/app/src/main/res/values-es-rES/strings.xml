@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VladyslavDice</string>
+    <string name="title">Kubik Game</string>
+    <string name="sub_title">Este programa simula un juego de dados, donde tienes lanzar el dado y acertar que numero salga</string>
+    <string name="hp_points"> Marcador actual %1$d</string>
+    <string name="autor_name">Vladyslav Dumynsky</string>
+    <string name="restart_game">Reiniciar Juego</string>
+</resources>

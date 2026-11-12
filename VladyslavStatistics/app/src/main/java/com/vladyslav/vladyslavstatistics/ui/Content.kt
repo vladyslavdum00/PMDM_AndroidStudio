@@ -12,9 +12,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Adb
+import androidx.compose.material.icons.filled.Facebook
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.Mood
+import androidx.compose.material.icons.outlined.Flag
+import androidx.compose.material.icons.outlined.Mood
+import androidx.compose.material.icons.rounded.AcUnit
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -81,11 +93,25 @@ fun Content(modifier: Modifier = Modifier) {
 
         //La parte con contadores de Personas
         Column(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = "Personas:",
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold
-            )
+
+            BadgedBox(badge = {
+
+                Badge {
+
+                    Text(text = "$countPerson")}
+            }) {
+
+
+                Text(
+
+                    text = "Personas:",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+
+
+            }
+
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -349,6 +375,30 @@ fun Content(modifier: Modifier = Modifier) {
                 """.trimMargin()
                 )
             }
+
+
+        }
+
+        Row(modifier= Modifier
+            .fillMaxWidth()) {
+            Icon(
+                imageVector = Icons.Filled.Mood,
+                contentDescription = "i1"
+            )
+            Icon(
+                imageVector = Icons.Outlined.Flag,
+                contentDescription = "i1"
+
+            )
+            Icon(
+                imageVector = Icons.Filled.Facebook,
+                contentDescription = "i1"
+            )
+            Icon(
+                imageVector = Icons.Rounded.AcUnit,
+                contentDescription = "i1"
+            )
+
         }
 
 
