@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VladyslavDice</string>
+    <string name="title">Kubik Game</string>
+    <string name="sub_title">This program simulates a dice game, where you have to roll the die and correctly guess which number comes up.</string>
+    <string name="hp_points">Current score %1$d</string>
+    <string name="autor_name">Vladyslav Dumynsky</string>
+    <string name="restart_game">Restart Game</string>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">VladyslavProfile</string>
+    <string name="sucribe_button_text1">Follow</string>
+    <string name="sucribe_button_text2">Unfollow</string>
+    <string name="user_name">Vladyslav Dumynsky</string>
+    <string name="hobbie_title">My preferences</string>
+    <string name="preference_text1">Mountaineering</string>
+    <string name="preference_text2">Volleyball</string>
+    <string name="preference_text3">Formula 1</string>
+    <string name="preference_text4">Watch movies</string>
+    <string name="preference_text5">Listen music</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VladyslavProfile</string>
+    <string name="sucribe_button_text1">Seguir</string>
+    <string name="sucribe_button_text2">Dejar</string>
+    <string name="user_name">Vladyslav Dumynsky</string>
+    <string name="hobbie_title">Mis Gustos</string>
+    <string name="preference_text1">Montañismo</string>
+    <string name="preference_text2">Volleyball</string>
+    <string name="preference_text3">Formula 1</string>
+    <string name="preference_text4">Ver peliculas</string>
+    <string name="preference_text5">Escuchar musica</string>
+</resources>
