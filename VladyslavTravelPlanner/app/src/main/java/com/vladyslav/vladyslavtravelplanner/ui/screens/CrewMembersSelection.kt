@@ -19,7 +19,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.vladyslav.vladyslavtravelplanner.R
 
 @Composable
 fun CrewMembersSelection() {
@@ -50,11 +53,14 @@ fun CrewMembersSelection() {
                 checked = check.selected,
                 onCheckedChange = {check.onCheckedChange(it)}
             )
-            Text(text = check.title)
+            Text(text = check.title,
+                color = colorResource(R.color.white),
+                fontWeight = FontWeight.Bold)
         }
 
     }
-    val crewsCheckbox = getChecks("\uD83C\uDF56 Luffy",
+    val crewsCheckbox = getChecks(
+        "\uD83C\uDF56 Luffy",
         "⚔\uFE0F Zoro",
         "\uD83C\uDF4A Nami",
         "\uD83C\uDF73 Sanji",
@@ -68,8 +74,9 @@ fun CrewMembersSelection() {
     Column(modifier = Modifier
         .width(390.dp)
         .height(150.dp)
-        .background(Color.Gray,
-            shape = RoundedCornerShape(30.dp)
+        .background(
+            shape = RoundedCornerShape(30.dp),
+            color = colorResource(R.color.checkbox_list)
         ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,) {

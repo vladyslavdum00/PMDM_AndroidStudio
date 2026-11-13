@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#FFF9F4E8</color>
+    <color name="header">#FF0B3075</color>
+    <color name="header_text">#FFF8DE3C</color>
+    <color name="checkbox_list">#FF4B244A</color>
+    <color name="islands_list">#FFE5A93C</color>
+    <color name="surface">#FFF1E9D2</color>
 </resources>

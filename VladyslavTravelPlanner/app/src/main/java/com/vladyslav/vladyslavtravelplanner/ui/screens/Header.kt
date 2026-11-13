@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,7 +25,7 @@ import com.vladyslav.vladyslavtravelplanner.R
 fun Header() {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .background(Color.White)
+        .background(colorResource(R.color.header))
         .padding(top = 25.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -34,7 +35,7 @@ fun Header() {
         Text(text = "Travel Planner",
             fontWeight = FontWeight.Bold,
             fontSize = 22.sp,
-            color = Color.DarkGray
+            color = colorResource(R.color.header_text)
         )
         Spacer(modifier =Modifier.width(25.dp))
         Image(
