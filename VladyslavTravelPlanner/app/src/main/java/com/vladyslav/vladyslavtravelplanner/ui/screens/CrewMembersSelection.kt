@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
@@ -25,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.vladyslav.vladyslavtravelplanner.R
 
 @Composable
-fun CrewMembersSelection() {
+fun CrewMembersSelection(onCrewCountChange: (Int) -> Unit) {
     data class Check(
         val title: String,
         val selected: Boolean,
@@ -44,21 +46,6 @@ fun CrewMembersSelection() {
         }
     }
 
-    @Composable
-    fun CustomCheckBox(check: Check) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Checkbox(
-                checked = check.selected,
-                onCheckedChange = {check.onCheckedChange(it)}
-            )
-            Text(text = check.title,
-                color = colorResource(R.color.white),
-                fontWeight = FontWeight.Bold)
-        }
-
-    }
     val crewsCheckbox = getChecks(
         "\uD83C\uDF56 Luffy",
         "⚔\uFE0F Zoro",
@@ -70,10 +57,40 @@ fun CrewMembersSelection() {
         "\uD83D\uDCDA Robin",
         "\uD83E\uDD16 Franky"
     )
+
+    fun selectedChecksCount(list: List<Check>):Int {
+        var count = 0
+        for (check in list){
+            if (check.selected) count++
+        }
+        return count
+    }
+    @Composable
+    fun CustomCheckBox(check: Check) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = check.selected,
+                onCheckedChange = { isChecked ->
+                    check.onCheckedChange(isChecked)
+                    val currentCount = selectedChecksCount(crewsCheckbox)
+                    val newCount = if (isChecked) currentCount + 1 else currentCount - 1
+                    onCrewCountChange(newCount)
+                }
+            )
+            Text(text = check.title,
+                color = colorResource(R.color.white),
+                fontWeight = FontWeight.Bold)
+        }
+
+    }
+
+
     Spacer(modifier = Modifier.height(25.dp))
     Column(modifier = Modifier
         .width(390.dp)
-        .height(150.dp)
+        .height(200.dp)
         .background(
             shape = RoundedCornerShape(30.dp),
             color = colorResource(R.color.checkbox_list)
@@ -85,7 +102,20 @@ fun CrewMembersSelection() {
                 CustomCheckBox(check = it)
             } }
         }
+        Row(modifier = Modifier
+            .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            if (selectedChecksCount(crewsCheckbox) != 0){
+                Text(text = "Tripulantes seleccionados: ${selectedChecksCount(crewsCheckbox)}",
+                    color = colorResource(R.color.white),
+                    fontWeight = FontWeight.Medium
+                )
+            }
+        }
     }
+
 
 
 }

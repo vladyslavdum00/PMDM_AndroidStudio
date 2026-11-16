@@ -2,16 +2,12 @@ package com.vladyslav.vladyslavtravelplanner.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExposedDropdownMenu
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
@@ -20,11 +16,10 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -32,12 +27,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.vladyslav.vladyslavtravelplanner.R
-import kotlin.math.exp
 
 @Composable
-fun DestinationMenu() {
+fun DestinationMenu(
+    selectedIsland: String,
+    onIslandChange: (String) -> Unit,
+    distance: String,
+    onDistanceChange: (String) -> Unit
+) {
     val islands = listOf(
         "Arabasta",
         "Little Garden",
@@ -57,8 +57,10 @@ fun DestinationMenu() {
     )
 
     var expanded by rememberSaveable { mutableStateOf(false) }
-    var selectedOptionText by rememberSaveable {mutableStateOf("Selecciona una isla")}
-    var insertedTextValue by rememberSaveable {mutableStateOf("") }
+
+    val distanceRegex = remember { Regex("^([1-9][0-9]{0,4})?$") }
+    val hasError = !distance.matches(distanceRegex)
+
     Row (modifier = Modifier
         .width(400.dp)
         .height(100.dp)
@@ -87,7 +89,7 @@ fun DestinationMenu() {
                 ),
 
                 readOnly = true,
-                value = selectedOptionText,
+                value = selectedIsland,
                 onValueChange = {},
                 label = {
 
@@ -112,7 +114,7 @@ fun DestinationMenu() {
                             fontWeight = FontWeight.Medium,
                             color = Color.Black)},
                     onClick = {
-                        selectedOptionText = option
+                        onIslandChange(option)
                         expanded = false
                     }
                 ) }
@@ -120,8 +122,9 @@ fun DestinationMenu() {
         }
         Spacer(modifier = Modifier.width(25.dp))
         OutlinedTextField(
-            value = insertedTextValue,
-            onValueChange = {insertedTextValue = it},
+            value = distance,
+            onValueChange = onDistanceChange,
+
             colors = OutlinedTextFieldDefaults.colors(
                 focusedTextColor = Color.Black,
                 unfocusedTextColor = Color.Black,
@@ -134,8 +137,17 @@ fun DestinationMenu() {
                 Text(
                     text = "Distancia",
                     color = Color.Black,
+                    fontWeight = FontWeight.Medium
                 )
             },
+            isError = hasError,
+            supportingText = {if (hasError){
+                Text(text = "Formato no valido",
+                    color = Color.Red)
+            } },
+
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true,
             modifier = Modifier
                 .width(120.dp)
         )
